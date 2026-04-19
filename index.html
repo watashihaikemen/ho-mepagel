@@ -105,11 +105,12 @@
             border-radius: 4px;
         }
 
-        /* お問い合わせフォーム（静的） */
+        /* お問い合わせフォーム */
         .contact-form {
             background: #fff;
             padding: 40px;
             border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .form-group {
@@ -118,8 +119,9 @@
 
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         input, textarea {
@@ -128,6 +130,13 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
+            background: #fafafa;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #333;
+            background: #fff;
         }
 
         button {
@@ -141,6 +150,7 @@
             font-size: 1.1rem;
             cursor: pointer;
             transition: background 0.3s;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -177,38 +187,40 @@
         <div class="grid">
             <div class="card">
                 <h3>論理的思考</h3>
-                <p>妥協のない分析力と、徹底した論理性に基づいたアプローチを提供します。すべての事象には理由があり、その最適解を導き出すことを信条としています。</p>
+                <p>妥協のない分析力と、徹底した論理性に基づいたアプローチ。すべての事象を構造的に捉え、最適解を導き出すことを信条としています。</p>
             </div>
             <div class="card">
-                <h3>高精度の美</h3>
-                <p>視覚的な完成度を追求。細部へのこだわりが、全体の調和と説得力を生み出します。妥協のないクオリティを、あらゆるプロジェクトに。</p>
+                <h3>高精度の追求</h3>
+                <p>細部へのこだわりが全体の説得力を生むと考え、視覚的な完成度と情報の正確性を両立させた表現を追求しています。</p>
             </div>
         </div>
     </section>
 
     <section id="visual">
         <h2>ビジュアル</h2>
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" alt="Technology" class="image-box">
-        <p style="text-align: center; color: #666;">「真理は細部に宿る」を体現する、洗練された空間構築を目指しています。</p>
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" alt="Core Visual" class="image-box">
+        <p style="text-align: center; color: #666; font-size: 0.9rem;">「真理は細部に宿る」を体現する、洗練された空間構築。</p>
     </section>
 
     <section id="contact">
         <h2>お問い合わせ</h2>
-        <div class="contact-form">
+        <form action="https://formspree.io/f/gsjsbavxhs@gmail.com" method="POST" class="contact-form">
             <div class="form-group">
-                <label>お名前</label>
-                <input type="text" placeholder="例：山田 太郎">
+                <label for="name">お名前</label>
+                <input type="text" id="name" name="name" placeholder="例：山田 太郎" required>
             </div>
             <div class="form-group">
-                <label>メールアドレス</label>
-                <input type="email" placeholder="example@mail.com">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="_replyto" placeholder="example@mail.com" required>
             </div>
             <div class="form-group">
-                <label>メッセージ</label>
-                <textarea rows="5" placeholder="ご用件を入力してください"></textarea>
+                <label for="message">メッセージ</label>
+                <textarea id="message" name="message" rows="5" placeholder="ご用件を入力してください" required></textarea>
             </div>
-            <button type="button">送信する</button>
-        </div>
+            <input type="hidden" name="_subject" value="ホームページからのお問い合わせ">
+            
+            <button type="submit">送信する</button>
+        </form>
     </section>
 
     <footer>
