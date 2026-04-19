@@ -3,200 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ | 論理と解析</title>
+    <title>THE LOGIC</title>
     <style>
         :root {
-            --bg-color: #f9f9f9;
-            --text-main: #333333;
-            --text-light: #666666;
-            --accent-color: #2c3e50;
-            --border-color: #e0e0e0;
-            --white: #ffffff;
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #333333;
+            --font-main: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.8;
-            letter-spacing: 0.05em;
+            color: var(--text-color);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* 背景の微細なテクスチャ */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
         header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 100px 20px 60px;
-            background-color: var(--white);
-            border-bottom: 1px solid var(--border-color);
+            padding: 0 20px;
         }
+
+        .title-area {
+            overflow: hidden;
+        }
+
         h1 {
-            font-size: 2.2rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1);
         }
+
         .subtitle {
-            font-size: 1rem;
-            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            color: #888;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        .section {
-            margin-bottom: 80px;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 1.4rem;
-            color: var(--accent-color);
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent-color);
-            margin: 15px auto 0;
-        }
-        .profile-box {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            text-align: center;
-        }
-        .profile-text {
-            font-size: 1.05rem;
-            color: var(--text-main);
-            max-width: 800px;
+
+        section {
+            padding: 100px 10vw;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        .grid {
+
+        .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
+            margin-top: 50px;
         }
+
         .card {
-            background: var(--white);
-            padding: 35px 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            border-left: 1px solid var(--accent-color);
+            padding-left: 20px;
+            transition: all 0.4s ease;
         }
+
         .card:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            transform: translateY(-3px);
+            border-left: 1px solid #fff;
+            transform: translateX(10px);
         }
-        .card h3 {
-            color: var(--accent-color);
+
+        h2 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            font-weight: 700;
         }
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
+
+        p {
+            color: #ccc;
+            font-size: 1rem;
+            text-align: justify;
         }
-        .contact-box {
-            text-align: center;
-            background-color: var(--white);
-            padding: 50px 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+
+        .stat-box {
+            margin-top: 100px;
+            border-top: 1px solid var(--accent-color);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
-        .contact-btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 15px 40px;
-            background-color: var(--accent-color);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: opacity 0.3s ease;
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
         }
-        .contact-btn:hover {
-            opacity: 0.8;
+
+        .stat-num {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
         }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
         footer {
+            padding: 50px;
             text-align: center;
-            padding: 30px 20px;
-            background-color: var(--white);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-size: 0.85rem;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 0.1em;
+        }
+
+        /* アニメーション */
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            section { padding: 60px 5vw; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>論理と解析による課題解決</h1>
-        <div class="subtitle">データと観察に基づき、あらゆる事象を最適化する</div>
+        <div class="title-area">
+            <h1>Absolute<br>Logic</h1>
+        </div>
+        <p class="subtitle">26. Logic. Strategy. Precision.</p>
     </header>
 
-    <div class="container">
-        
-        <div class="section">
-            <h2 class="section-title">プロフィール</h2>
-            <div class="profile-box">
-                <p class="profile-text">
-                    徹底した論理的思考を軸に、複雑な課題を解析し、最適なアプローチを設計します。<br>
-                    海外での留学経験による柔軟な視野と語学力（初等教育レベルの英語指導）を有し、思い込みや感情を排したデータ駆動型の意思決定を重視しています。<br>
-                    デジタルクリエイティブから実生活のマネジメントに至るまで、エビデンスに基づいた「本質的な価値」を提供します。
-                </p>
+    <section id="philosophy">
+        <div class="card">
+            <h2>Philosophy</h2>
+            <p>
+                本質を突く。曖昧さを排除し、純粋な論理のみを抽出する。
+                この空間は、思考の純度を極限まで高めた結果であり、無駄な装飾は一切存在しない。
+                シンプルであることは、最強であることの同義語だ。
+            </p>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>Strategy</h2>
+                <p>あらゆる事象をデータとして捉え、統計に基づいた最適解を導き出す。ゲームから投資、人生の選択に至るまで、敗北の確率は論理によって限りなくゼロに近づけられる。</p>
+            </div>
+            <div class="card">
+                <h2>Visuals</h2>
+                <p>真のリアリズムは細部に宿る。過剰なメイクや不自然な加工を排し、肌の質感や光の粒子を正確に捉える。それが私の追求する最高精度の世界観である。</p>
             </div>
         </div>
 
-        <div class="section">
-            <h2 class="section-title">スキル・提供価値</h2>
-            <div class="grid">
-                
-                <div class="card">
-                    <h3>AI画像生成・プロンプト設計</h3>
-                    <p>不自然な加工感を徹底的に排除し、極めて写実的で自然なテクスチャ（肌の質感や自然光など）を再現する高度なプロンプトエンジニアリング。緻密な観察に基づくリアリズムを追求します。</p>
-                </div>
-                
-                <div class="card">
-                    <h3>データ解析・統計的アプローチ</h3>
-                    <p>確率論や統計データに基づいた最適な行動モデルの構築。独自のデータセットを用いた戦略立案など、感情や直感に頼らない、極めて論理的かつ効率的な課題解決を実行します。</p>
-                </div>
-                
-                <div class="card">
-                    <h3>リソース最適化・マネジメント</h3>
-                    <p>ハードウェアのトラブルシューティングから、不動産投資の収益性調査、市場プラットフォームの運用まで。あらゆる情報を精査し、コストとパフォーマンスのバランスを最大化します。</p>
-                </div>
-
-                <div class="card">
-                    <h3>生活基盤の論理的構築</h3>
-                    <p>栄養学に基づく食事管理や、エビデンスのあるスキンケアの実践など、自身の生活水準や健康状態すらも客観的な指標を用いて論理的に最適化する徹底した管理能力を持っています。</p>
-                </div>
+        <div class="stat-box">
+            <div class="stat-item">
+                <span class="stat-num">26</span>
+                <span class="stat-label">Years of Age</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">Pure</span>
+                <span class="stat-label">Logic Structure</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">∞</span>
+                <span class="stat-label">Possibility</span>
             </div>
         </div>
-
-        <div class="section">
-            <h2 class="section-title">お問い合わせ</h2>
-            <div class="contact-box">
-                <p style="color: var(--text-light);">
-                    プロジェクトへの参画、ご相談などにつきましては、以下のボタンよりご連絡ください。<br>
-                    論理と合理性に基づいた、迅速な対応をお約束します。
-                </p>
-                <a href="#" class="contact-btn">連絡を取る</a>
-            </div>
-        </div>
-
-    </div>
+    </section>
 
     <footer>
-        &copy; 2026 Portfolio. All rights reserved.
+        &copy; 2026 LOGIC OVERDRIVE. ALL RIGHTS RESERVED.
     </footer>
 
 </body>
