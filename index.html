@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE LOGIC</title>
+    <title>至高の論理</title>
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #ffffff;
-            --accent-color: #333333;
-            --font-main: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+            --bg: #000000;
+            --text: #ffffff;
+            --sub-text: #a0a0a0;
+            --accent: #ffffff;
+            --border: rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -19,196 +20,190 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: "Helvetica Neue", "Arial", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            line-height: 1.8;
+            word-break: break-all;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 背景の微細なテクスチャ */
-        body::before {
-            content: "";
+        /* 背景演出：動的なグラデーション */
+        .bg-gradient {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.3;
+            background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
             z-index: -1;
         }
 
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* ヒーローセクション */
         header {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            align-items: flex-start;
         }
 
-        .title-area {
-            overflow: hidden;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+        .main-title {
+            font-size: clamp(2.5rem, 10vw, 5rem);
             font-weight: 900;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            line-height: 1;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
             margin-bottom: 20px;
-            animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.5em;
-            color: #888;
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-in;
-        }
-
-        section {
-            padding: 100px 10vw;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .card {
-            border-left: 1px solid var(--accent-color);
+            border-left: 4px solid var(--accent);
             padding-left: 20px;
-            transition: all 0.4s ease;
         }
 
-        .card:hover {
-            border-left: 1px solid #fff;
-            transform: translateX(10px);
+        .lead-text {
+            font-size: 1.1rem;
+            color: var(--sub-text);
+            letter-spacing: 0.1em;
+            font-weight: 300;
+        }
+
+        /* コンテンツセクション */
+        section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--sub-text);
+            margin-bottom: 40px;
+            display: block;
+            letter-spacing: 0.3em;
         }
 
         h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
             font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
         }
 
-        p {
-            color: #ccc;
-            font-size: 1rem;
+        .content-block {
+            margin-bottom: 60px;
+        }
+
+        .content-block p {
+            font-size: 1.05rem;
+            color: var(--sub-text);
+            margin-bottom: 20px;
             text-align: justify;
         }
 
-        .stat-box {
-            margin-top: 100px;
-            border-top: 1px solid var(--accent-color);
-            padding-top: 40px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+        /* スマホ最適化されたグリッド */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
-        .stat-item {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 30px;
+        .grid-item {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            transition: 0.3s;
         }
 
-        .stat-num {
+        .grid-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+        }
+
+        .grid-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* 数値等の強調 */
+        .highlight {
+            font-size: 3rem;
+            font-weight: 900;
             display: block;
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
+            margin-bottom: 10px;
         }
 
         footer {
-            padding: 50px;
+            padding: 60px 0;
             text-align: center;
-            font-size: 0.7rem;
+            border-top: 1px solid var(--border);
             color: #444;
-            letter-spacing: 0.1em;
+            font-size: 0.8rem;
         }
 
-        /* アニメーション */
-        @keyframes slideUp {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 3.5rem; }
-            section { padding: 60px 5vw; }
+        /* モバイル対応の調整 */
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+            section { padding: 60px 0; }
+            .main-title { font-size: 3rem; }
+            .grid-item { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="title-area">
-            <h1>Absolute<br>Logic</h1>
-        </div>
-        <p class="subtitle">26. Logic. Strategy. Precision.</p>
-    </header>
+    <div class="bg-gradient"></div>
 
-    <section id="philosophy">
-        <div class="card">
-            <h2>Philosophy</h2>
-            <p>
-                本質を突く。曖昧さを排除し、純粋な論理のみを抽出する。
-                この空間は、思考の純度を極限まで高めた結果であり、無駄な装飾は一切存在しない。
-                シンプルであることは、最強であることの同義語だ。
-            </p>
-        </div>
+    <div class="container">
+        <header>
+            <h1 class="main-title">圧倒的<br>論理。</h1>
+            <p class="lead-text">純粋な思考が、世界を再定義する。</p>
+        </header>
 
-        <div class="content-grid">
-            <div class="card">
-                <h2>Strategy</h2>
-                <p>あらゆる事象をデータとして捉え、統計に基づいた最適解を導き出す。ゲームから投資、人生の選択に至るまで、敗北の確率は論理によって限りなくゼロに近づけられる。</p>
+        <section>
+            <span class="section-label">信念</span>
+            <div class="content-block">
+                <h2>無駄を削ぎ落とした先にある真理</h2>
+                <p>
+                    この場所には、虚飾も妥協も存在しない。
+                    全ての選択は論理によって裏打ちされ、最適化されている。
+                    シンプルであることは、迷いがないことの証である。
+                </p>
             </div>
-            <div class="card">
-                <h2>Visuals</h2>
-                <p>真のリアリズムは細部に宿る。過剰なメイクや不自然な加工を排し、肌の質感や光の粒子を正確に捉える。それが私の追求する最高精度の世界観である。</p>
-            </div>
-        </div>
+        </section>
 
-        <div class="stat-box">
-            <div class="stat-item">
-                <span class="stat-num">26</span>
-                <span class="stat-label">Years of Age</span>
+        <section>
+            <span class="section-label">領域</span>
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>戦略と解析</h3>
+                    <p>全ての事象を構造的に把握し、勝機を逃さない。統計に基づいた最適解を常に追求し、不確実性を排除する。</p>
+                </div>
+                <div class="grid-item">
+                    <h3>視覚の再現</h3>
+                    <p>偽りの美しさではなく、実在する質感へのこだわり。光と影、微細な粒子が織りなす現実以上の真実を捉える。</p>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-num">Pure</span>
-                <span class="stat-label">Logic Structure</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">∞</span>
-                <span class="stat-label">Possibility</span>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        &copy; 2026 LOGIC OVERDRIVE. ALL RIGHTS RESERVED.
-    </footer>
+        <section>
+            <span class="section-label">状態</span>
+            <div class="grid">
+                <div class="grid-item">
+                    <span class="highlight">26</span>
+                    <p>蓄積された時間と、研ぎ澄まされた現在の融合。</p>
+                </div>
+                <div class="grid-item">
+                    <span class="highlight">不変</span>
+                    <p>周囲に流されず、自らの論理を貫き通す。それが最強の証明となる。</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            二千二十六年　論理の極致
+        </footer>
+    </div>
 
 </body>
 </html>
