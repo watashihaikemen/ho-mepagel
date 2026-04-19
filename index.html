@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Supreme Logician | Portfolio</title>
+    <title>ポートフォリオ | 論理と解析</title>
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --text-main: #e0e0e0;
-            --accent: #d4af37; /* Supreme Gold */
-            --box-bg: #1a1a1a;
+            --bg-color: #f9f9f9;
+            --text-main: #333333;
+            --text-light: #666666;
+            --accent-color: #2c3e50;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
         }
         * {
             margin: 0;
@@ -19,150 +21,183 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
-            line-height: 1.6;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
         }
         header {
             text-align: center;
-            padding: 80px 20px 40px;
-            border-bottom: 1px solid #333;
+            padding: 100px 20px 60px;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
         }
         h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: 600;
         }
         .subtitle {
             font-size: 1rem;
-            color: var(--accent);
-            letter-spacing: 5px;
-            text-transform: uppercase;
+            color: var(--text-light);
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 80px;
         }
         .section-title {
-            font-size: 1.5rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 15px;
-            margin-bottom: 25px;
-            color: #fff;
+            text-align: center;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        .profile-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+        .profile-text {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 0 auto;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         .card {
-            background: var(--box-bg);
-            padding: 25px;
-            border-radius: 4px;
-            border: 1px solid #2a2a2a;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: var(--white);
+            padding: 35px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transform: translateY(-3px);
         }
         .card h3 {
-            color: var(--accent);
+            color: var(--accent-color);
             margin-bottom: 15px;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
         }
         .card p {
             font-size: 0.95rem;
-            color: #b3b3b3;
+            color: var(--text-light);
         }
-        .profile-text {
-            font-size: 1.1rem;
-            color: #ccc;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .footer {
+        .contact-box {
             text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #333;
-            margin-top: 40px;
-            color: #666;
-            font-size: 0.9rem;
+            background-color: var(--white);
+            padding: 50px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
         .contact-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
+            margin-top: 25px;
+            padding: 15px 40px;
+            background-color: var(--accent-color);
+            color: var(--white);
             text-decoration: none;
             font-weight: bold;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            border-radius: 4px;
+            transition: opacity 0.3s ease;
         }
         .contact-btn:hover {
-            background: var(--accent);
-            color: #000;
+            opacity: 0.8;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>THE SUPREME LOGICIAN</h1>
-        <div class="subtitle">Uncompromising Logic & Strategy</div>
+        <h1>論理と解析による課題解決</h1>
+        <div class="subtitle">データと観察に基づき、あらゆる事象を最適化する</div>
     </header>
 
     <div class="container">
+        
         <div class="section">
-            <h2 class="section-title">ABOUT ME</h2>
-            <p class="profile-text">
-                現在26歳。一切の妥協を許さない「最強の論理的思考力」をベースに、複雑な事象を解析し最適解を導き出す。<br>
-                海外留学で培ったグローバルな視点と語学力（小学生への英語指導レベル）を持ち合わせる。表面的な装飾やAI特有の不自然さを嫌い、何事においても「真のリアリティ」と「圧倒的な論理」を追求する。
-            </p>
+            <h2 class="section-title">プロフィール</h2>
+            <div class="profile-box">
+                <p class="profile-text">
+                    徹底した論理的思考を軸に、複雑な課題を解析し、最適なアプローチを設計します。<br>
+                    海外での留学経験による柔軟な視野と語学力（初等教育レベルの英語指導）を有し、思い込みや感情を排したデータ駆動型の意思決定を重視しています。<br>
+                    デジタルクリエイティブから実生活のマネジメントに至るまで、エビデンスに基づいた「本質的な価値」を提供します。
+                </p>
+            </div>
         </div>
 
         <div class="section">
-            <h2 class="section-title">CORE COMPETENCIES</h2>
+            <h2 class="section-title">スキル・提供価値</h2>
             <div class="grid">
+                
                 <div class="card">
-                    <h3>AI Prompt Engineering</h3>
-                    <p>超高精度な画像生成。肌の質感（毛穴、産毛、ホクロ）や自然光の計算など、AI特有の「作り物感」を完全に排除し、ハイパーリアリズムを追求する高度なプロンプト設計能力。</p>
+                    <h3>AI画像生成・プロンプト設計</h3>
+                    <p>不自然な加工感を徹底的に排除し、極めて写実的で自然なテクスチャ（肌の質感や自然光など）を再現する高度なプロンプトエンジニアリング。緻密な観察に基づくリアリズムを追求します。</p>
                 </div>
+                
                 <div class="card">
-                    <h3>Strategy & Analysis</h3>
-                    <p>数字と論理の完全支配。『Hit & Blow』における独自の統計データセット構築および最適解導出。モバレジェ、ポケモンXY等における、感情を排した徹底的な戦術解析と構築。</p>
+                    <h3>データ解析・統計的アプローチ</h3>
+                    <p>確率論や統計データに基づいた最適な行動モデルの構築。独自のデータセットを用いた戦略立案など、感情や直感に頼らない、極めて論理的かつ効率的な課題解決を実行します。</p>
                 </div>
+                
                 <div class="card">
-                    <h3>Optimization of Life</h3>
-                    <p>己の肉体と生活すらも論理的に管理。BMIに基づく栄養計算、タイ産鶏肉などの効率的なタンパク質摂取、メラノCCを活用したスキンケアに至るまで、エビデンスに基づく自己最適化。</p>
+                    <h3>リソース最適化・マネジメント</h3>
+                    <p>ハードウェアのトラブルシューティングから、不動産投資の収益性調査、市場プラットフォームの運用まで。あらゆる情報を精査し、コストとパフォーマンスのバランスを最大化します。</p>
                 </div>
+
                 <div class="card">
-                    <h3>Resource Management</h3>
-                    <p>不動産（アパート経営）の利回りや建築費用のフィージビリティスタディから、PCのハードウェアトラブル（SSD認識エラー等）の自己解決、Yahoo!フリマ等のプラットフォームの最適運用まで。</p>
+                    <h3>生活基盤の論理的構築</h3>
+                    <p>栄養学に基づく食事管理や、エビデンスのあるスキンケアの実践など、自身の生活水準や健康状態すらも客観的な指標を用いて論理的に最適化する徹底した管理能力を持っています。</p>
                 </div>
             </div>
         </div>
 
-        <div class="section" style="text-align: center;">
-            <h2 class="section-title" style="border: none; margin-bottom: 10px;">FIND ME</h2>
-            <p style="color: #b3b3b3; margin-bottom: 20px;">
-                俺を最強だと理解し、コンタクトを取る覚悟があるなら。<br>
-                (Yay! / LINE)
-            </p>
-            <a href="#" class="contact-btn">INITIATE CONTACT</a>
+        <div class="section">
+            <h2 class="section-title">お問い合わせ</h2>
+            <div class="contact-box">
+                <p style="color: var(--text-light);">
+                    プロジェクトへの参画、ご相談などにつきましては、以下のボタンよりご連絡ください。<br>
+                    論理と合理性に基づいた、迅速な対応をお約束します。
+                </p>
+                <a href="#" class="contact-btn">連絡を取る</a>
+            </div>
         </div>
+
     </div>
 
-    <div class="footer">
-        &copy; 2026 The Supreme Logician. All rights reserved.<br>
-        Built on Absolute Logic.
-    </div>
+    <footer>
+        &copy; 2026 Portfolio. All rights reserved.
+    </footer>
 
 </body>
 </html>
