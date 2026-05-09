@@ -1,206 +1,267 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE ARCHIVE | Official Site</title>
-    <style>
-        /* 基本スタイル */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>タロット占い</title>
 
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
+<style>
+    body{
+        font-family: sans-serif;
+        background:#111827;
+        color:white;
+        margin:0;
+        padding:20px;
+    }
 
-        /* ヘッダー */
-        header {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
+    h1{
+        text-align:center;
+        margin-bottom:25px;
+    }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            letter-spacing: 0.2rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
+    .container{
+        max-width:1000px;
+        margin:auto;
+    }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+    .controls{
+        background:#1f2937;
+        padding:20px;
+        border-radius:16px;
+        margin-bottom:20px;
+    }
 
-        /* コンテンツセクション */
-        section {
-            padding: 100px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    label{
+        display:block;
+        margin-top:15px;
+        margin-bottom:5px;
+    }
 
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            padding-bottom: 15px;
-        }
+    select, button{
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        font-size:16px;
+    }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 2px;
-            background-color: #333;
-        }
+    button{
+        margin-top:20px;
+        background:#7c3aed;
+        color:white;
+        cursor:pointer;
+        transition:0.2s;
+    }
 
-        /* グリッドレイアウト */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+    button:hover{
+        background:#6d28d9;
+    }
 
-        .card {
-            background: white;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            text-align: center;
-        }
+    .cards{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+        gap:15px;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    .card{
+        background:#1f2937;
+        border-radius:16px;
+        padding:15px;
+        text-align:center;
+        box-shadow:0 0 10px rgba(0,0,0,0.3);
+    }
 
-        .card h3 {
-            margin-bottom: 15px;
-            color: #000;
-        }
+    .card h3{
+        margin:0 0 10px;
+    }
 
-        /* 画像付きセクション */
-        .image-box {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
+    .reversed{
+        color:#f87171;
+        font-weight:bold;
+    }
 
-        /* フォームレス・コンタクトエリア */
-        .contact-action {
-            padding: 60px 40px;
-            background: #fff;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-        }
+    .upright{
+        color:#34d399;
+        font-weight:bold;
+    }
 
-        .contact-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 20px 60px;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            letter-spacing: 0.1rem;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
+    .history{
+        margin-top:40px;
+        background:#1f2937;
+        padding:20px;
+        border-radius:16px;
+    }
 
-        .contact-button:hover {
-            background: #000;
-            letter-spacing: 0.3rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+    .history-item{
+        border-bottom:1px solid #374151;
+        padding:10px 0;
+    }
 
-        .email-display {
-            display: block;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
-            letter-spacing: 0.05rem;
-        }
-
-        /* フッター */
-        footer {
-            background: #fff;
-            padding: 50px 20px;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-
-        /* レスポンシブ調整 */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            section { padding: 60px 20px; }
-            .image-box { height: 250px; }
-        }
-    </style>
+    .history-item:last-child{
+        border:none;
+    }
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="hero-content">
-            <h1>PERFECTION & LOGIC</h1>
-            <p>思考と美学が交差する、唯一無二のプラットフォーム</p>
-        </div>
-    </header>
+<div class="container">
 
-    <section id="about">
-        <h2>コンセプト</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>論理的思考</h3>
-                <p>妥協のない分析力と、徹底した論理性に基づいたアプローチ。すべての事象を構造的に捉え、最適解を導き出すことを信条としています。</p>
-            </div>
-            <div class="card">
-                <h3>高精度の追求</h3>
-                <p>細部へのこだわりが全体の説得力を生むと考え、視覚的な完成度と情報の正確性を両立させた表現を追求しています。</p>
-            </div>
-        </div>
-    </section>
+    <h1>🔮 タロット占い 🔮</h1>
 
-    <section id="visual">
-        <h2>ビジュアル</h2>
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" alt="Core Visual" class="image-box">
-        <p style="text-align: center; color: #666; font-size: 0.9rem;">「真理は細部に宿る」を体現する、洗練された空間構築。</p>
-    </section>
+    <div class="controls">
 
-    <section id="contact">
-        <h2>コンタクト</h2>
-        <div class="contact-action">
-            <p>形式的な入力は不要です。意思を直接お送りください。</p>
-            <a href="mailto:gsjsbavxhs@gmail.com?subject=Inquiry%20to%20THE%20ARCHIVE" class="contact-button">
-                DIRECT CONNECT
-            </a>
-            <span class="email-display">gsjsbavxhs@gmail.com</span>
-        </div>
-    </section>
+        <label>引く枚数 (1〜10)</label>
+        <select id="cardCount">
+            <option value="1">1枚</option>
+            <option value="2">2枚</option>
+            <option value="3">3枚</option>
+            <option value="4">4枚</option>
+            <option value="5">5枚</option>
+            <option value="6">6枚</option>
+            <option value="7">7枚</option>
+            <option value="8">8枚</option>
+            <option value="9">9枚</option>
+            <option value="10">10枚</option>
+        </select>
 
-    <footer>
-        <p>&copy; 2026 THE ARCHIVE. All Rights Reserved.</p>
-    </footer>
+        <label>正逆設定</label>
+        <select id="reverseMode">
+            <option value="true">正逆あり</option>
+            <option value="false">正逆なし</option>
+        </select>
+
+        <button onclick="drawTarot()">カードを引く</button>
+
+    </div>
+
+    <div class="cards" id="result"></div>
+
+    <div class="history">
+        <h2>前回の結果</h2>
+        <div id="historyContent">まだ占い結果がありません。</div>
+    </div>
+
+</div>
+
+<script>
+
+const tarotCards = [
+
+"愚者","魔術師","女教皇","女帝","皇帝","法王","恋人",
+"戦車","力","隠者","運命の輪","正義","吊るされた男",
+"死神","節制","悪魔","塔","星","月","太陽","審判","世界",
+
+"ワンドのエース","ワンドの2","ワンドの3","ワンドの4","ワンドの5",
+"ワンドの6","ワンドの7","ワンドの8","ワンドの9","ワンドの10",
+"ワンドのペイジ","ワンドのナイト","ワンドのクイーン","ワンドのキング",
+
+"カップのエース","カップの2","カップの3","カップの4","カップの5",
+"カップの6","カップの7","カップの8","カップの9","カップの10",
+"カップのペイジ","カップのナイト","カップのクイーン","カップのキング",
+
+"ソードのエース","ソードの2","ソードの3","ソードの4","ソードの5",
+"ソードの6","ソードの7","ソードの8","ソードの9","ソードの10",
+"ソードのペイジ","ソードのナイト","ソードのクイーン","ソードのキング",
+
+"ペンタクルのエース","ペンタクルの2","ペンタクルの3","ペンタクルの4",
+"ペンタクルの5","ペンタクルの6","ペンタクルの7","ペンタクルの8",
+"ペンタクルの9","ペンタクルの10","ペンタクルのペイジ",
+"ペンタクルのナイト","ペンタクルのクイーン","ペンタクルのキング"
+
+];
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function drawTarot(){
+
+    const count = parseInt(document.getElementById("cardCount").value);
+    const reverseMode = document.getElementById("reverseMode").value === "true";
+
+    let deck = [...tarotCards];
+    shuffle(deck);
+
+    const drawn = deck.slice(0, count);
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+
+    let saveData = [];
+
+    drawn.forEach(card => {
+
+        let reversed = false;
+
+        if(reverseMode){
+            reversed = Math.random() < 0.5;
+        }
+
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "card";
+
+        cardDiv.innerHTML = `
+            <h3>${card}</h3>
+            <p class="${reversed ? 'reversed' : 'upright'}">
+                ${reversed ? '逆位置' : '正位置'}
+            </p>
+        `;
+
+        resultDiv.appendChild(cardDiv);
+
+        saveData.push({
+            name: card,
+            position: reversed ? "逆位置" : "正位置"
+        });
+
+    });
+
+    const history = {
+        date: new Date().toLocaleString(),
+        cards: saveData
+    };
+
+    localStorage.setItem("tarotHistory", JSON.stringify(history));
+
+    loadHistory();
+}
+
+function loadHistory(){
+
+    const historyContent = document.getElementById("historyContent");
+
+    const data = localStorage.getItem("tarotHistory");
+
+    if(!data){
+        historyContent.innerHTML = "まだ占い結果がありません。";
+        return;
+    }
+
+    const history = JSON.parse(data);
+
+    let html = `
+        <div class="history-item">
+            <strong>${history.date}</strong><br><br>
+    `;
+
+    history.cards.forEach(card => {
+        html += `
+            ${card.name} - ${card.position}<br>
+        `;
+    });
+
+    html += `</div>`;
+
+    historyContent.innerHTML = html;
+}
+
+loadHistory();
+
+</script>
 
 </body>
 </html>
